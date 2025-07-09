@@ -59,34 +59,38 @@ const TaskList = () => {
               {...provided.droppableProps}
               ref={provided.innerRef}
             >
-              {filteredTasks.map((task, index) => {
-                return (
-                  <Draggable
-                    key={task.id}
-                    draggableId={String(task.id)}
-                    index={index}
-                  >
-                    {(provided) => (
-                      <li
-                        className={`list-group-item d-flex justify-content-between align-items-center \
+              {filteredTasks.length === 0 ? (
+                <div className="text-center my-5">No tasks available</div>
+              ) : (
+                filteredTasks.map((task, index) => {
+                  return (
+                    <Draggable
+                      key={task.id}
+                      draggableId={String(task.id)}
+                      index={index}
+                    >
+                      {(provided) => (
+                        <li
+                          className={`list-group-item d-flex justify-content-between align-items-center \
                           ${
                             task.completed
                               ? "bg-success text-white"
                               : "bg-warning"
                           } my-1 rounded-top rounded-bottom`}
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                      >
-                        <div className="d-flex align-items-center w-100">
-                          <span className="me-2 fw-bold">{index + 1}.</span>
-                          <TaskItem task={task} />
-                        </div>
-                      </li>
-                    )}
-                  </Draggable>
-                );
-              })}
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                        >
+                          <div className="d-flex align-items-center w-100">
+                            <span className="me-2 fw-bold">{index + 1}.</span>
+                            <TaskItem task={task} />
+                          </div>
+                        </li>
+                      )}
+                    </Draggable>
+                  );
+                })
+              )}
               {provided.placeholder}
             </ul>
           )}
