@@ -42,8 +42,12 @@ const TaskForm = () => {
 
       <div
         ref={toastRef}
-        className="toast align-items-center text-bg-danger border-0 position-fixed bottom-0 end-0 m-4"
-        style={{ zIndex: 1055 }}
+        className="toast align-items-center text-bg-danger border-0 position-fixed bottom-0 end-0 m-2"
+        style={{
+          zIndex: 1055,
+          maxWidth: "90vw",
+          wordBreak: "break-word",
+        }}
       >
         <div className="d-flex">
           <div className="toast-body">Task cannot be empty!</div>
